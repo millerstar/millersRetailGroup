@@ -2,10 +2,7 @@ package sql_practice;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DataSource {
 
@@ -30,6 +27,18 @@ public class DataSource {
         dataSource.setUser("root");
         dataSource.setPassword("root");
         return dataSource;
+    }
+
+    public void addShopToChain(String name, int city, String street, int employee, int chain){
+
+    }
+
+    public void addStoreToChain(String storeName, String chainName){
+
+    }
+
+    public void addEmploeeToChain(String name, String LastName, int city, String street, String postal_code, int shop, int group_managment, Date birthDay){
+
     }
 
     public Connection setMySqlConnection() {
