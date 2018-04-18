@@ -10,10 +10,10 @@ public class Menu {
     public static void start() {
         boolean exit=false;
         System.out.println("Welcome to the Miller's Shops DB Manager, please enter your choice, 0 to exit");
-        printMenu();
 
-        DataSource ds = new DataSource();
+        //DataSource ds = new DataSource();
         while (exit == false) {
+            printMenu();
             switch (getUserSelectionInt()) {
                 case 0: exit=true;
                 case 1:
@@ -21,30 +21,55 @@ public class Menu {
                     String chainName = getUserSelectionString();
                     System.out.println("\ndescription");
                     String chainDescription = getUserSelectionString();
-                    ds.addNewChain(chainName, chainDescription);
+                    //ds.addNewChain(chainName, chainDescription);
+                    //TODO: add method to print the updated table to the user
+                    break;
+
                 case 2:
                     System.out.print("\nEnter store name");
                     String storeName = getUserSelectionString();
                     System.out.print("\nchain name:");
                     chainName = getUserSelectionString();
                     //ds.addNewStoreToChain(chainName, chainDescription);
+                    //TODO: add method to print the updated table to the user
+                    break;
+
+
                 case 3:
                     System.out.print("\nEnter employee name");
                     String employeeName = getUserSelectionString();
                     System.out.print("\nchain name:");
                     chainName = getUserSelectionString();
                     //ds.addNewStoreToChain(chainName, chainDescription);
+                    //TODO: add method to print the updated table to the user
+                    break;
+
+
                 case 4:
                     System.out.println("all shops that are in a certain Shopping Mall");
+                    //TODO: call method
+                    //TODO: add method to print the updated table to the user
+                    break;
+
                 case 5:
                     System.out.println("\t5. all shops that are in a certain Shopping Mall Group:");
+                    //TODO: call method
+                    //TODO: add method to print the updated table to the user
+                    break;
 
                 case 6:
                     System.out.println("\t6. Present all Employees of a certain Chain");
+                    //TODO: call method
+                    //TODO: add method to print the updated table to the user
+                    break;
 
                 case 7:
                     System.out.println("\t7. Present all details of a Shop");
-                default:
+                    //TODO: call method
+                    //TODO: add method to print the updated table to the user
+                    break;
+
+                default:exit=true;
 
             }
         }
