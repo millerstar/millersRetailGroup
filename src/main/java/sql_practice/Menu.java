@@ -17,11 +17,11 @@ public class Menu {
             switch (getUserSelectionInt()) {
                 case 0: exit=true;
                 case 1:
-                        System.out.println("\nEnter chain name");
-                        String chainName = getUserSelectionString();
-                        System.out.println("\ndescription");
-                        String chainDescription = getUserSelectionString();
-                        ds.addNewChain(chainName, chainDescription);
+                    System.out.println("\nEnter chain name");
+                    String chainName = getUserSelectionString();
+                    System.out.println("\ndescription");
+                    String chainDescription = getUserSelectionString();
+                    ds.addNewChain(chainName, chainDescription);
                 case 2:
                     System.out.print("\nEnter store name");
                     String storeName = getUserSelectionString();
