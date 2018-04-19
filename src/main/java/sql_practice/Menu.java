@@ -70,8 +70,10 @@ public class Menu {
                     break;
 
                 case 7:
-                    System.out.println("\t7. Present all details of a Shop");
-                    //TODO: call method
+                    System.out.println("Present all details of a Shop");
+                    System.out.print("\nEnter shop name");
+                    String shopName = getUserSelectionString();
+                    resultSetMetaData = ds.selectShopDetails(shopName);
                     //TODO: add method to print the updated table to the user
                     break;
 

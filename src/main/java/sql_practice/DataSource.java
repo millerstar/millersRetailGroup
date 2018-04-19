@@ -52,14 +52,24 @@ public class DataSource {
 
     public ResultSetMetaData selectEmployeesByChain(String chainName) {
         sqlStatement = "SELECT employee.name, employee.last_name, employee.city, " +
-                "employee.street, employee.birthDay from employee INNER JOIN shop " +
+                "employee.street, employee.birthDay FROM employee INNER JOIN shop " +
                 "ON employee.shop = shop.idshop INNER JOIN chain " +
                 "ON shop.chain = chain.idchain WHERE chain.name like '" + chainName.trim() + "'";
         resultSetMetaData = getResultSetMetaData(sqlStatement);
         return  resultSetMetaData;
     }
 
-
+    public ResultSetMetaData selectShopDetails(String shopName) {
+        sqlStatement = "SELECT shop.name, city.name, shop.street, employee.name as employee_name, " +
+                "employee.last_name as employee_last_name, chain.name " +
+                "FROM shop inner join city " +
+                "ON shop.city = city.idcity inner join chain " +
+                "ON shop.chain = chain.idchain inner join employee " +
+                "ON shop.employee = employee.idemployee " +
+                "WHERE shop.name like '" + shopName.trim() + "'";
+        resultSetMetaData = getResultSetMetaData(sqlStatement);
+        return  resultSetMetaData;
+    }
 
     // service methods
     private Connection setMySqlConnection() {
