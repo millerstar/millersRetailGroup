@@ -1,7 +1,5 @@
 package sql_practice;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
-
 import java.sql.ResultSetMetaData;
 import java.util.Scanner;
 
@@ -13,6 +11,7 @@ public class Menu {
         System.out.println("Welcome to the Miller's Shops DB Manager, please enter your choice, 0 to exit");
 
         DataSource ds = new DataSource();
+        ResultSetMetaData resultSetMetaData = null;
         while (exit == false) {
             printMenu();
             switch (getUserSelectionInt()) {
@@ -50,13 +49,15 @@ public class Menu {
                     System.out.println("all shops that are in a certain Shopping Mall");
                     System.out.print("\nEnter shopping Mall name");
                     String shoppingMall = getUserSelectionString();
-                    ResultSetMetaData allShopsMetaData = ds.selectShopsInMall(shoppingMall);
+                    resultSetMetaData = ds.selectShopsInMall(shoppingMall);
                     //TODO: add method to print the updated table to the user
                     break;
 
                 case 5:
                     System.out.println("\t5. all shops that are in a certain Shopping Mall Group:");
-                    //TODO: call method
+                    System.out.printf("\nEnter shopping Mall group name");
+                    String shoppingMallGroup = getUserSelectionString();
+                    resultSetMetaData = ds.selectShopsInMallGroup(shoppingMallGroup);
                     //TODO: add method to print the updated table to the user
                     break;
 

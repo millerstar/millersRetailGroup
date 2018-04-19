@@ -11,13 +11,56 @@ public class DataSource {
     private Statement stmt = null;
     private ResultSet rs = null;
     private String sqlStatement = null;
+    private ResultSetMetaData resultSetMetaData = null;
 
     // constructor
     public DataSource() {
         conn = setMySqlConnection();
     }
 
-    // methods
+    // insert & select methods
+    public void addShopToChain(String name, int city, String street, int employee, int chain) {
+
+    }
+
+    public void addStoreToChain(String storeName, String chainName) {
+
+    }
+
+    public void addEmploeeToChain(String name, String LastName, int city, String street, String postal_code, int shop, int group_managment, Date birthDay) {
+
+    }
+
+    public ResultSetMetaData selectShopsInMall(String shoppingMallName) {
+        sqlStatement = "SELECT shop.name FROM shop INNER JOIN shops_in_mall " +
+                "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
+                "ON shops_in_mall.mall = mall.idmall " +
+                "WHERE mall.name like '" + shoppingMallName.trim() + "'";
+        resultSetMetaData = getResultSetMetaData(sqlStatement);
+        return resultSetMetaData;
+    }
+
+    public ResultSetMetaData selectShopsInMallGroup(String shoppingMallGroupName) {
+        sqlStatement = "SELECT shop.name from shop INNER JOIN shops_in_mall " +
+                "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
+                "ON shops_in_mall.mall = mall.idmall INNER JOIN mall_group " +
+                "ON mall.group = mall_group.idmall_group " +
+                "where mall_group.name like '" + shoppingMallGroupName + "'";
+        resultSetMetaData = getResultSetMetaData(sqlStatement);
+        return resultSetMetaData;
+    }
+
+    // service methods
+    private Connection setMySqlConnection() {
+        Connection connection = null;
+        try {
+            connection = getMySqlDataSource().getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
     private MysqlDataSource getMySqlDataSource() {
         MysqlDataSource dataSource = new MysqlDataSource();
 
@@ -46,47 +89,18 @@ public class DataSource {
         }
     }
 
-    // insert & select methods
-    public void addShopToChain(String name, int city, String street, int employee, int chain) {
-
-    }
-
-    public void addStoreToChain(String storeName, String chainName) {
-
-    }
-
-    public void addEmploeeToChain(String name, String LastName, int city, String street, String postal_code, int shop, int group_managment, Date birthDay) {
-
-    }
-
-    public ResultSetMetaData selectShopsInMall(String shoppingMallName) {
-        ResultSetMetaData shopsInMallData = null;
-        sqlStatement = "SELECT shop.name FROM shop INNER JOIN shops_in_mall " +
-                "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
-                "ON shops_in_mall.mall = mall.idmall " +
-                "WHERE mall.name like '" + shoppingMallName.trim() + "'";
+    private ResultSetMetaData getResultSetMetaData(String sqlStatement) {
         try {
             conn = setMySqlConnection();
             stmt = conn.createStatement();
-
             rs = stmt.executeQuery(sqlStatement);
-            shopsInMallData = rs.getMetaData();
+            resultSetMetaData = rs.getMetaData();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
             closeConnection();
         }
-        return shopsInMallData;
-    }
-
-    private Connection setMySqlConnection() {
-        Connection connection = null;
-        try {
-            connection = getMySqlDataSource().getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
+        return resultSetMetaData;
     }
 
     public void addNewChain(String name, String description) {
