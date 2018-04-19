@@ -54,16 +54,18 @@ public class Menu {
                     break;
 
                 case 5:
-                    System.out.println("\t5. all shops that are in a certain Shopping Mall Group:");
-                    System.out.printf("\nEnter shopping Mall group name");
+                    System.out.println("all shops that are in a certain Shopping Mall Group");
+                    System.out.print("\nEnter shopping Mall group name");
                     String shoppingMallGroup = getUserSelectionString();
                     resultSetMetaData = ds.selectShopsInMallGroup(shoppingMallGroup);
                     //TODO: add method to print the updated table to the user
                     break;
 
                 case 6:
-                    System.out.println("\t6. Present all Employees of a certain Chain");
-                    //TODO: call method
+                    System.out.println("Present all Employees of a certain Chain");
+                    System.out.print("\nEnter retail chain name");
+                    String retailChainName = getUserSelectionString();
+                    resultSetMetaData = ds.selectEmployeesByChain(retailChainName);
                     //TODO: add method to print the updated table to the user
                     break;
 

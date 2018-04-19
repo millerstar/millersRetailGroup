@@ -45,10 +45,21 @@ public class DataSource {
                 "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
                 "ON shops_in_mall.mall = mall.idmall INNER JOIN mall_group " +
                 "ON mall.group = mall_group.idmall_group " +
-                "where mall_group.name like '" + shoppingMallGroupName + "'";
+                "WHERE mall_group.name like '" + shoppingMallGroupName.trim() + "'";
         resultSetMetaData = getResultSetMetaData(sqlStatement);
         return resultSetMetaData;
     }
+
+    public ResultSetMetaData selectEmployeesByChain(String chainName) {
+        sqlStatement = "SELECT employee.name, employee.last_name, employee.city, " +
+                "employee.street, employee.birthDay from employee INNER JOIN shop " +
+                "ON employee.shop = shop.idshop INNER JOIN chain " +
+                "ON shop.chain = chain.idchain WHERE chain.name like '" + chainName.trim() + "'";
+        resultSetMetaData = getResultSetMetaData(sqlStatement);
+        return  resultSetMetaData;
+    }
+
+
 
     // service methods
     private Connection setMySqlConnection() {
