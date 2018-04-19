@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class Query1 {
     public static void main(String[] args) {
-        DataSource dataSource = new DataSource();
+       /* DataSource dataSource = new DataSource();
 
         Connection conn = null;
         Statement stmt = null;
@@ -17,7 +17,7 @@ public class Query1 {
             conn = dataSource.setMySqlConnection();
             stmt = conn.createStatement();
 //            rs = stmt.executeQuery("SELECT version()");
-            rs = stmt.executeQuery("SELECT * FROM city");
+            rs = stmt.executeQuery("SELECT * FROM employee");
             ResultSetMetaData metaData = rs.getMetaData();
             int cols = metaData.getColumnCount();
             for (int i = 1; i <= cols; i++) {
@@ -33,20 +33,7 @@ public class Query1 {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        }*/
+
     }
 }

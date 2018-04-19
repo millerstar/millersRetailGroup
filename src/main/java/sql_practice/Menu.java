@@ -2,6 +2,7 @@ package sql_practice;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 
+import java.sql.ResultSetMetaData;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,7 +12,7 @@ public class Menu {
         boolean exit=false;
         System.out.println("Welcome to the Miller's Shops DB Manager, please enter your choice, 0 to exit");
 
-        //DataSource ds = new DataSource();
+        DataSource ds = new DataSource();
         while (exit == false) {
             printMenu();
             switch (getUserSelectionInt()) {
@@ -47,7 +48,9 @@ public class Menu {
 
                 case 4:
                     System.out.println("all shops that are in a certain Shopping Mall");
-                    //TODO: call method
+                    System.out.print("\nEnter shopping Mall name");
+                    String shoppingMall = getUserSelectionString();
+                    ResultSetMetaData allShopsMetaData = ds.selectShopsInMall(shoppingMall);
                     //TODO: add method to print the updated table to the user
                     break;
 

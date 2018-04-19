@@ -7,9 +7,10 @@ import java.sql.*;
 public class DataSource {
 
     // class members
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+    private Connection conn = null;
+    private Statement stmt = null;
+    private ResultSet rs = null;
+    private String sqlStatement = null;
 
     // constructor
     public DataSource() {
@@ -17,7 +18,7 @@ public class DataSource {
     }
 
     // methods
-    public MysqlDataSource getMySqlDataSource() {
+    private MysqlDataSource getMySqlDataSource() {
         MysqlDataSource dataSource = new MysqlDataSource();
 
         // set data source properties
@@ -29,19 +30,56 @@ public class DataSource {
         return dataSource;
     }
 
-    public void addShopToChain(String name, int city, String street, int employee, int chain){
+    private void closeConnection() {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // insert & select methods
+    public void addShopToChain(String name, int city, String street, int employee, int chain) {
 
     }
 
-    public void addStoreToChain(String storeName, String chainName){
+    public void addStoreToChain(String storeName, String chainName) {
 
     }
 
-    public void addEmploeeToChain(String name, String LastName, int city, String street, String postal_code, int shop, int group_managment, Date birthDay){
+    public void addEmploeeToChain(String name, String LastName, int city, String street, String postal_code, int shop, int group_managment, Date birthDay) {
 
     }
 
-    public Connection setMySqlConnection() {
+    public ResultSetMetaData selectShopsInMall(String shoppingMallName) {
+        ResultSetMetaData shopsInMallData = null;
+        sqlStatement = "SELECT shop.name FROM shop INNER JOIN shops_in_mall " +
+                "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
+                "ON shops_in_mall.mall = mall.idmall " +
+                "WHERE mall.name like '" + shoppingMallName.trim() + "'";
+        try {
+            conn = setMySqlConnection();
+            stmt = conn.createStatement();
+
+            rs = stmt.executeQuery(sqlStatement);
+            shopsInMallData = rs.getMetaData();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return shopsInMallData;
+    }
+
+    private Connection setMySqlConnection() {
         Connection connection = null;
         try {
             connection = getMySqlDataSource().getConnection();

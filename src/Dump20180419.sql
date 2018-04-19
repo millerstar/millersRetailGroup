@@ -27,7 +27,7 @@ CREATE TABLE `chain` (
   `name` varchar(45) NOT NULL COMMENT 'chaine name',
   `description` varchar(45) NOT NULL COMMENT 'chain description',
   PRIMARY KEY (`idchain`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='commercial retail chain';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='commercial retail chain';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `chain` (
 
 LOCK TABLES `chain` WRITE;
 /*!40000 ALTER TABLE `chain` DISABLE KEYS */;
-INSERT INTO `chain` VALUES (1,'koala bear','baby clothes and equipment'),(2,'work on it','office supplies stores'),(3,'Casual wear','family clothes'),(4,'Bakers','Footwear Group, Inc. Shoe Stores'),(5,'Genesco','Shoe Stores'),(6,'Wal-Mart','All in one');
+INSERT INTO `chain` VALUES (1,'koala bear','baby clothes and equipment'),(2,'work on it','office supplies stores'),(3,'Casual wear','family clothes'),(4,'Bakers','Footwear Group, Inc. Shoe Stores'),(5,'Genesco','Shoe Stores'),(6,'Wal-Mart','All in one'),(7,'Casual wear','family clothes');
 /*!40000 ALTER TABLE `chain` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `employee` (
   KEY `EmpManagment_idx` (`group_menagment`),
   CONSTRAINT `City` FOREIGN KEY (`city`) REFERENCES `city` (`idcity`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `EmpManagment` FOREIGN KEY (`group_menagment`) REFERENCES `management` (`idmanagement`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Neta','Shezaf',1,'Shenkin 14','654323',1,NULL,'1970-08-03'),(2,'Orit','Miller',3,'Imber 3','567432',3,NULL,'1973-05-03'),(3,'Yehuda','Levy',4,'Kiryat Sefer 7','656789',2,NULL,'1980-08-15');
+INSERT INTO `employee` VALUES (1,'Neta','Shezaf',1,'Shenkin 14','654323',1,NULL,'1970-08-03'),(2,'Orit','Miller',3,'Imber 3','567432',3,NULL,'1973-05-03'),(3,'Yehuda','Levy',4,'Kiryat Sefer 7','656789',2,NULL,'1980-08-15'),(4,'Yehiel','Elbaz',6,'Hamayan 61','765555',NULL,1,'1986-09-19'),(6,'Iris','Steiner',3,'Haavoda 12','556789',8,1,'1977-02-18');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ CREATE TABLE `shop` (
   CONSTRAINT `chainId` FOREIGN KEY (`chain`) REFERENCES `chain` (`idchain`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `cityId` FOREIGN KEY (`city`) REFERENCES `city` (`idcity`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `empId` FOREIGN KEY (`employee`) REFERENCES `employee` (`idemployee`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='shop in the miller’s retail chain';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='shop in the miller’s retail chain';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE `shop` (
 
 LOCK TABLES `shop` WRITE;
 /*!40000 ALTER TABLE `shop` DISABLE KEYS */;
-INSERT INTO `shop` VALUES (4,'',2,'Dizengoff 7',1,2),(5,'',5,'Rothschild 56',2,3),(6,'',3,'Shenkin 19',3,4);
+INSERT INTO `shop` VALUES (4,'Abercrombie & Fitch',2,'Dizengoff 7',1,2),(5,'Asics',5,'Rothschild 56',2,3),(6,'MAC Cosmetics',3,'Shenkin 19',3,4),(8,'Mini Garden',5,'Herzel 65',3,1),(9,'Starbucks Coffee',6,'Kaplan 210',4,6);
 /*!40000 ALTER TABLE `shop` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +243,7 @@ CREATE TABLE `shops_in_mall` (
 
 LOCK TABLES `shops_in_mall` WRITE;
 /*!40000 ALTER TABLE `shops_in_mall` DISABLE KEYS */;
-INSERT INTO `shops_in_mall` VALUES (1,4,'3'),(1,5,'7'),(3,5,'12');
+INSERT INTO `shops_in_mall` VALUES (1,4,'3'),(1,5,'7'),(3,5,'12'),(1,8,'109'),(1,9,'31');
 /*!40000 ALTER TABLE `shops_in_mall` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -256,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-17 19:32:10
+-- Dump completed on 2018-04-19 13:55:57
