@@ -3,6 +3,10 @@ package sql_practice;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DataSource {
 
@@ -20,14 +24,42 @@ public class DataSource {
 
     // insert & select methods
     public void addShopToChain(String name, int city, String street, int employee, int chain) {
-
+        String values = "VALUES (" + wrapWithCommas(name) + ", " + city + ", " + wrapWithCommas(street) + ", " + employee + ", " + chain + ")";
+        sqlStatement = "INSERT INTO shop (name, city, street, employee, chain) " +  values;
+        runUpdate(sqlStatement);
     }
 
-    public void addStoreToChain(String storeName, String chainName) {
+    // format for birthDay - yyyy-mm-dd
+    public void addEmploeeToChain(String name, String lastName, int city, String street, String postal_code, int shop, int group_managment, String birthDay) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date javaDate = null;
+        try {
+            javaDate = formatter.parse(birthDay);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date convertedBirthDay = new java.sql.Date(javaDate.getTime());
 
-    }
-
-    public void addEmploeeToChain(String name, String LastName, int city, String street, String postal_code, int shop, int group_managment, Date birthDay) {
+        String values = "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        sqlStatement = "INSERT INTO employee (name, last_name, city, street, postal_code, shop, `group`, birthDay) " +  values;
+        try {
+            PreparedStatement preparedStatement;
+            conn = setMySqlConnection();
+            preparedStatement = conn.prepareStatement(sqlStatement);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setInt(3, city);
+            preparedStatement.setString(4, street);
+            preparedStatement.setString(5, postal_code);
+            preparedStatement.setInt(6, shop);
+            preparedStatement.setInt(7, group_managment);
+            preparedStatement.setDate(8, convertedBirthDay);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection();
+        }
 
     }
 
@@ -124,6 +156,18 @@ public class DataSource {
         return resultSetMetaData;
     }
 
+    private void runUpdate(String sqlStatement) {
+        try {
+            conn = setMySqlConnection();
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sqlStatement);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
     public void addNewChain(String name, String description) {
         conn = null;
         try {
@@ -148,6 +192,16 @@ public class DataSource {
                 e.printStackTrace();
             }
         }
+    }
 
+    private String wrapWithCommas(String str){
+        return "'" + str + "'";
+    }
+
+    // tests for inserts
+    public static void main(String[] args) {
+        DataSource dataSource = new DataSource();
+        dataSource.addShopToChain("koko", 1, "Rotshild 1", 1, 1);
+        dataSource.addEmploeeToChain("andrey", "litvinsky", 1, "Rotshild", "12345", 1, 0, "2010-11-10" );
     }
 }
