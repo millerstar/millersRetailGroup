@@ -16,6 +16,7 @@ public class DataSource {
     private ResultSet rs = null;
     private String sqlStatement = null;
     private ResultSetMetaData resultSetMetaData = null;
+    private ResultSet resultSet = null;
 
     // constructor
     public DataSource() {
@@ -63,35 +64,35 @@ public class DataSource {
 
     }
 
-    public ResultSetMetaData selectShopsInMall(String shoppingMallName) {
+    public ResultSet selectShopsInMall(String shoppingMallName) {
         sqlStatement = "SELECT shop.name FROM shop INNER JOIN shops_in_mall " +
                 "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
                 "ON shops_in_mall.mall = mall.idmall " +
                 "WHERE mall.name like '" + shoppingMallName.trim() + "'";
-        resultSetMetaData = getResultSetMetaData(sqlStatement);
-        return resultSetMetaData;
+        resultSet = getResultSet(sqlStatement);
+        return resultSet;
     }
 
-    public ResultSetMetaData selectShopsInMallGroup(String shoppingMallGroupName) {
+    public ResultSet selectShopsInMallGroup(String shoppingMallGroupName) {
         sqlStatement = "SELECT shop.name from shop INNER JOIN shops_in_mall " +
                 "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
                 "ON shops_in_mall.mall = mall.idmall INNER JOIN mall_group " +
                 "ON mall.group = mall_group.idmall_group " +
                 "WHERE mall_group.name like '" + shoppingMallGroupName.trim() + "'";
-        resultSetMetaData = getResultSetMetaData(sqlStatement);
-        return resultSetMetaData;
+        resultSet = getResultSet(sqlStatement);
+        return resultSet;
     }
 
-    public ResultSetMetaData selectEmployeesByChain(String chainName) {
+    public ResultSet selectEmployeesByChain(String chainName) {
         sqlStatement = "SELECT employee.name, employee.last_name, employee.city, " +
                 "employee.street, employee.birthDay FROM employee INNER JOIN shop " +
                 "ON employee.shop = shop.idshop INNER JOIN chain " +
                 "ON shop.chain = chain.idchain WHERE chain.name like '" + chainName.trim() + "'";
-        resultSetMetaData = getResultSetMetaData(sqlStatement);
-        return  resultSetMetaData;
+        resultSet = getResultSet(sqlStatement);
+        return  resultSet;
     }
 
-    public ResultSetMetaData selectShopDetails(String shopName) {
+    public ResultSet selectShopDetails(String shopName) {
         sqlStatement = "SELECT shop.name, city.name, shop.street, employee.name as employee_name, " +
                 "employee.last_name as employee_last_name, chain.name " +
                 "FROM shop inner join city " +
@@ -99,8 +100,8 @@ public class DataSource {
                 "ON shop.chain = chain.idchain inner join employee " +
                 "ON shop.employee = employee.idemployee " +
                 "WHERE shop.name like '" + shopName.trim() + "'";
-        resultSetMetaData = getResultSetMetaData(sqlStatement);
-        return  resultSetMetaData;
+        resultSet = getResultSet(sqlStatement);
+        return  resultSet;
     }
 
     // service methods
@@ -142,18 +143,18 @@ public class DataSource {
         }
     }
 
-    private ResultSetMetaData getResultSetMetaData(String sqlStatement) {
+    private ResultSet getResultSet(String sqlStatement) {
         try {
             conn = setMySqlConnection();
             stmt = conn.createStatement();
-            rs = stmt.executeQuery(sqlStatement);
-            resultSetMetaData = rs.getMetaData();
+            resultSet = stmt.executeQuery(sqlStatement);
+            resultSetMetaData = resultSet.getMetaData();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
             closeConnection();
         }
-        return resultSetMetaData;
+        return resultSet;
     }
 
     private void runUpdate(String sqlStatement) {

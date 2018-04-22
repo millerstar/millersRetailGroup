@@ -14,6 +14,7 @@ public class Menu {
 
         DataSource ds = new DataSource();
         ResultSetMetaData resultSetMetaData = null;
+        ResultSet resultSet = null;
         while (exit == false) {
             printMenu();
             switch (getUserSelectionInt()) {
@@ -93,21 +94,21 @@ public class Menu {
                 case 5: //all shops that are in a certain Shopping Mall Group
                     System.out.print("\n " + "Enter shopping Mall group name");
                     String shoppingMallGroup = getUserSelectionString();
-                    resultSetMetaData = ds.selectShopsInMallGroup(shoppingMallGroup);
+                    resultSet = ds.selectShopsInMallGroup(shoppingMallGroup);
                     //TODO: add method to print the updated table to the user
                     break;
 
                 case 6: //Present all Employees of a certain Chain
                     System.out.print("\n " + " Enter retail chain name");
                     String retailChainName = getUserSelectionString();
-                    resultSetMetaData = ds.selectEmployeesByChain(retailChainName);
+                    resultSet = ds.selectEmployeesByChain(retailChainName);
                     //TODO: add method to print the updated table to the user
                     break;
 
                 case 7: //Present all details of a Shop
                     System.out.print("\nEnter shop name");
                     shopName = getUserSelectionString();
-                   // resultSetMetaData = ds.selectShopDetails(shopName).toString();
+                    resultSet = ds.selectShopDetails(shopName);
                     //TODO: add method to print the updated table to the user
                     break;
 
