@@ -71,7 +71,7 @@ public class Menu {
                     System.out.println("\nShop code:");
                     int shopCode = getUserSelectionInt();
 
-                    System.out.println("\nGroup managment code:");
+                    System.out.println("\nGroup management code:");
                     int groupManagmentCode = getUserSelectionInt();
 
                     System.out.println("\nBirth day");
@@ -86,26 +86,26 @@ public class Menu {
                 case 4:
                     System.out.println("\nEnter shopping Mall name");
                     String shoppingMall = getUserSelectionString();
-                    printResuls(ds.selectShopsInMall(shoppingMall));
+                    printResult(ds.selectShopsInMall(shoppingMall));
                     break;
 
                 case 5: //all shops that are in a certain Shopping Mall Group
                     System.out.println("\n " + " Enter shopping Mall group name");
                     String shoppingMallGroup = getUserSelectionString();
-                    printResuls(ds.selectShopsInMallGroup(shoppingMallGroup));
+                    printResult(ds.selectShopsInMallGroup(shoppingMallGroup));
                     break;
 
                 case 6: //Present all Employees of a certain Chain
-                    printResuls(ds.selectAvilableChains());
+                    printResult(ds.selectAvilableChains());
                     System.out.println("\n " + " Please choose the desired chain name from the list above");
                     String retailChainName = getUserSelectionString();
-                    printResuls(ds.selectEmployeesByChain(retailChainName));
+                    printResult(ds.selectEmployeesByChain(retailChainName));
                     break;
 
                 case 7: //Present all details of a Shop
                     System.out.println("\nEnter shop name");
                     shopName = getUserSelectionString();
-                    printResuls(ds.selectShopDetails(shopName));
+                    printResult(ds.selectShopDetails(shopName));
                     break;
 
                 default:
@@ -140,7 +140,7 @@ public class Menu {
         return userSelection.nextLine();
     }
 
-    private static void printResuls(ResultSet rs) throws SQLException {
+    private static void printResult(ResultSet rs) throws SQLException {
         ResultSetMetaData metaData = rs.getMetaData();
         System.out.println();
         int cols = metaData.getColumnCount();

@@ -104,6 +104,22 @@ public class DataSource {
         return  resultSet;
     }
 
+    public ResultSet selectAvilableChains() {
+        sqlStatement = "SELECT name AS 'chain name' FROM millers.chain";
+        resultSet = getResultSet(sqlStatement);
+        return resultSet;
+    }
+
+    public Long  getChainsCount() throws SQLException {
+        sqlStatement = "SELECT COUNT(chain.idchain) AS 'count of chains' FROM chain";
+        resultSet = getResultSet(sqlStatement);
+        Long countVal = null;
+        while (resultSet.next()) {
+            countVal = (Long) resultSet.getObject(1);
+        }
+        return countVal;
+    }
+
     // service methods
     private Connection setMySqlConnection() {
         Connection connection = null;
