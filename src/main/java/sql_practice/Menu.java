@@ -21,6 +21,7 @@ public class Menu {
                 case 0:
                     exit = true;
                     System.out.println("\n Thanks for using Miller's Shops DB Manager, bye bye!");
+                    ds.closeConnection();
                     break;
                 case 1:
                     System.out.println("\nEnter chain name");
@@ -87,28 +88,25 @@ public class Menu {
                 case 4:
                     System.out.print("\nEnter shopping Mall name");
                     String shoppingMall = getUserSelectionString();
-                    printResuls(ds.selectShopsInMallGroup(shoppingMall));
+                    printResuls(ds.selectShopsInMall(shoppingMall));
                     break;
 
                 case 5: //all shops that are in a certain Shopping Mall Group
                     System.out.print("\n " + "Enter shopping Mall group name");
                     String shoppingMallGroup = getUserSelectionString();
-                    resultSet = ds.selectShopsInMallGroup(shoppingMallGroup);
-                    //TODO: add method to print the updated table to the user
+                    printResuls(ds.selectShopsInMallGroup(shoppingMallGroup));
                     break;
 
                 case 6: //Present all Employees of a certain Chain
                     System.out.print("\n " + " Enter retail chain name");
                     String retailChainName = getUserSelectionString();
-                    resultSet = ds.selectEmployeesByChain(retailChainName);
-                    //TODO: add method to print the updated table to the user
+                    printResuls(ds.selectEmployeesByChain(retailChainName));
                     break;
 
                 case 7: //Present all details of a Shop
                     System.out.print("\nEnter shop name");
                     shopName = getUserSelectionString();
-                    resultSet = ds.selectShopDetails(shopName);
-                    //TODO: add method to print the updated table to the user
+                    printResuls(ds.selectShopDetails(shopName));
                     break;
 
                 default:

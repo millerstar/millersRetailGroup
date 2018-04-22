@@ -127,7 +127,7 @@ public class DataSource {
         return dataSource;
     }
 
-    private void closeConnection() {
+    public void closeConnection() {
         try {
             if (rs != null) {
                 rs.close();
@@ -152,7 +152,7 @@ public class DataSource {
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
-            closeConnection();
+//            closeConnection();
         }
         return resultSet;
     }
@@ -199,10 +199,13 @@ public class DataSource {
         return "'" + str + "'";
     }
 
-    // tests for inserts
-    public static void main(String[] args) {
+/*    // tests for inserts
+    public static void main(String[] args) throws SQLException {
+
         DataSource dataSource = new DataSource();
+        Menu menu = new Menu();
+        menu.printResuls(dataSource.selectShopsInMall("G Mall"));
         dataSource.addShopToChain("koko", 1, "Rotshild 1", 1, 1);
         dataSource.addEmploeeToChain("andrey", "litvinsky", 1, "Rotshild", "12345", 1, 0, "2010-11-10" );
-    }
+    }*/
 }
