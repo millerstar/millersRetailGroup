@@ -30,7 +30,7 @@ public class Menu {
                     String chainDescription = getUserSelectionString();
                     ds.addNewChain(chainName, chainDescription);
                     //TODO: add method to print the updated table to the user
-                    System.out.println("\n " + chainName + "have been successfully added ");
+                    System.out.println("\n " + chainName + " have been successfully added ");
                     break;
 
                 case 2:
@@ -51,7 +51,7 @@ public class Menu {
 
                     ds.addShopToChain(shopName, cityCode, streetName,  employeeCode,  chainCode);
                     //TODO: add method to print the updated table to the user
-                    System.out.println("\n " + shopName + "have been successfully added ");
+                    System.out.println("\n " + shopName + " have been successfully added ");
                     break;
 
                 case 3:
@@ -82,7 +82,7 @@ public class Menu {
                     ds.addEmploeeToChain(employeeFirstName, employeeLastName, cityCode, streetName, postal_code, shopCode, groupManagmentCode,  birthDay);
                     //TODO: add method to print the updated table to the user
 
-                    System.out.println("\n " + employeeFirstName + "have been successfully added ");
+                    System.out.println("\n " + employeeFirstName + " have been successfully added ");
                     break;
 
                 case 4:
@@ -92,7 +92,7 @@ public class Menu {
                     break;
 
                 case 5: //all shops that are in a certain Shopping Mall Group
-                    System.out.print("\n " + "Enter shopping Mall group name");
+                    System.out.print("\n " + " Enter shopping Mall group name");
                     String shoppingMallGroup = getUserSelectionString();
                     printResuls(ds.selectShopsInMallGroup(shoppingMallGroup));
                     break;
