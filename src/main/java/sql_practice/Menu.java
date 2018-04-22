@@ -32,19 +32,19 @@ public class Menu {
                     break;
 
                 case 2:
-                    System.out.print("\nEnter store name");
+                    System.out.println("\nEnter store name");
                     String shopName = getUserSelectionString();
 
-                    System.out.print("\nCity code:");
+                    System.out.println("\nCity code:");
                     int cityCode = getUserSelectionInt();
 
-                    System.out.print("\nStreet name:");
+                    System.out.println("\nStreet name:");
                     String streetName = getUserSelectionString();
 
-                    System.out.print("\nEmployee code:");
+                    System.out.println("\nEmployee code:");
                     int employeeCode = getUserSelectionInt();
 
-                    System.out.print("\nchain code:");
+                    System.out.println("\nchain code:");
                     int chainCode = getUserSelectionInt();
 
                     ds.addShopToChain(shopName, cityCode, streetName,  employeeCode,  chainCode);
@@ -53,28 +53,28 @@ public class Menu {
                     break;
 
                 case 3:
-                    System.out.print("\nEnter employee first name");
+                    System.out.println("\nEnter employee first name");
                     String employeeFirstName = getUserSelectionString();
 
-                    System.out.print("\nEnter employee last name");
+                    System.out.println("\nEnter employee last name");
                     String employeeLastName = getUserSelectionString();
 
-                    System.out.print("\nCity code:");
+                    System.out.println("\nCity code:");
                     cityCode = getUserSelectionInt();
 
-                    System.out.print("\nStreet name:");
+                    System.out.println("\nStreet name:");
                     streetName = getUserSelectionString();
 
-                    System.out.print("\nPostal code:");
+                    System.out.println("\nPostal code:");
                     String postal_code = getUserSelectionString();
 
-                    System.out.print("\nShop code:");
+                    System.out.println("\nShop code:");
                     int shopCode = getUserSelectionInt();
 
-                    System.out.print("\nGroup managment code:");
+                    System.out.println("\nGroup managment code:");
                     int groupManagmentCode = getUserSelectionInt();
 
-                    System.out.print("\nBirth day");
+                    System.out.println("\nBirth day");
                     String birthDay = getUserSelectionString();
 
                     ds.addEmployeeToChain(employeeFirstName, employeeLastName, cityCode, streetName, postal_code, shopCode, groupManagmentCode,  birthDay);
@@ -84,25 +84,25 @@ public class Menu {
                     break;
 
                 case 4:
-                    System.out.print("\nEnter shopping Mall name");
+                    System.out.println("\nEnter shopping Mall name");
                     String shoppingMall = getUserSelectionString();
                     printResuls(ds.selectShopsInMall(shoppingMall));
                     break;
 
                 case 5: //all shops that are in a certain Shopping Mall Group
-                    System.out.print("\n " + " Enter shopping Mall group name");
+                    System.out.println("\n " + " Enter shopping Mall group name");
                     String shoppingMallGroup = getUserSelectionString();
                     printResuls(ds.selectShopsInMallGroup(shoppingMallGroup));
                     break;
 
                 case 6: //Present all Employees of a certain Chain
-                    System.out.print("\n " + " Enter retail chain name");
+                    System.out.println("\n " + " Enter retail chain name");
                     String retailChainName = getUserSelectionString();
                     printResuls(ds.selectEmployeesByChain(retailChainName));
                     break;
 
                 case 7: //Present all details of a Shop
-                    System.out.print("\nEnter shop name");
+                    System.out.println("\nEnter shop name");
                     shopName = getUserSelectionString();
                     printResuls(ds.selectShopDetails(shopName));
                     break;
@@ -124,7 +124,9 @@ public class Menu {
         System.out.println("\t6. Present all Employees of a certain Chain");
         System.out.println("\t7. Present all details of a Shop");
         System.out.println();
-        System.out.print("Your Selection: ");
+        System.out.println("Your Selection: ");
+        System.out.println();
+
     }
 
     private static int getUserSelectionInt () {
