@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Menu {
     private static Scanner userSelection;
 
-    public static void start() {
+    public static void start() throws SQLException {
         boolean exit = false;
         System.out.println("Welcome to the Miller's Shops DB Manager, please enter your choice, 0 to exit");
 
@@ -87,8 +87,7 @@ public class Menu {
                 case 4:
                     System.out.print("\nEnter shopping Mall name");
                     String shoppingMall = getUserSelectionString();
-                    System.out.println(ds.selectShopsInMall(shoppingMall));
-                    //TODO: add method to print the updated table to the user
+                    printResuls(ds.selectShopsInMallGroup(shoppingMall));
                     break;
 
                 case 5: //all shops that are in a certain Shopping Mall Group
@@ -142,8 +141,9 @@ public class Menu {
         return userSelection.nextLine();
     }
 
-    private void printSelect(ResultSet rs) throws SQLException {
+    private static void printResuls(ResultSet rs) throws SQLException {
         ResultSetMetaData metaData = rs.getMetaData();
+        System.out.println();
         int cols = metaData.getColumnCount();
         // print table headers
         for (int i = 1; i <= cols; i++) {
@@ -158,9 +158,10 @@ public class Menu {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
-    public static void main (String[]args){
+    public static void main (String[]args) throws SQLException {
         start();
     }
 
