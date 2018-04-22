@@ -31,7 +31,7 @@ public class DataSource {
     }
 
     // format for birthDay - yyyy-mm-dd
-    public void addEmploeeToChain(String name, String lastName, int city, String street, String postal_code, int shop, int group_managment, String birthDay) {
+    public void addEmployeeToChain(String name, String lastName, int city, String street, String postal_code, int shop, int group_managment, String birthDay) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date javaDate = null;
         try {

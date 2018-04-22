@@ -13,8 +13,6 @@ public class Menu {
         System.out.println("Welcome to the Miller's Shops DB Manager, please enter your choice, 0 to exit");
 
         DataSource ds = new DataSource();
-        ResultSetMetaData resultSetMetaData = null;
-        ResultSet resultSet = null;
         while (exit == false) {
             printMenu();
             switch (getUserSelectionInt()) {
@@ -79,7 +77,7 @@ public class Menu {
                     System.out.print("\nBirth day");
                     String birthDay = getUserSelectionString();
 
-                    ds.addEmploeeToChain(employeeFirstName, employeeLastName, cityCode, streetName, postal_code, shopCode, groupManagmentCode,  birthDay);
+                    ds.addEmployeeToChain(employeeFirstName, employeeLastName, cityCode, streetName, postal_code, shopCode, groupManagmentCode,  birthDay);
                     //TODO: add method to print the updated table to the user
 
                     System.out.println("\n " + employeeFirstName + " have been successfully added ");
