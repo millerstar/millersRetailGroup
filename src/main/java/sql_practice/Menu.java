@@ -96,7 +96,8 @@ public class Menu {
                     break;
 
                 case 6: //Present all Employees of a certain Chain
-                    System.out.println("\n " + " Enter retail chain name");
+                    printResuls(ds.selectAvilableChains());
+                    System.out.println("\n " + " Please choose the desired chain name from the list above");
                     String retailChainName = getUserSelectionString();
                     printResuls(ds.selectEmployeesByChain(retailChainName));
                     break;
