@@ -1,7 +1,6 @@
 package sql_practice;
 
 import com.sun.org.glassfish.gmbal.Description;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -13,9 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DataSourceTest {
 
     private DataSource ds = new DataSource();
-
-
-
 
 //Test if we are able to add a chain
     @Test
