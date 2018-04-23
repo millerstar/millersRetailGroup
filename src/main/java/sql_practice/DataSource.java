@@ -64,6 +64,40 @@ public class DataSource {
 
     }
 
+    // used for tests
+    public void deleteRowFromChain(String name){
+        sqlStatement = "DELETE FROM chain WHERE name = ?";
+        try {
+            PreparedStatement preparedStatement;
+            conn = setMySqlConnection();
+            preparedStatement = conn.prepareStatement(sqlStatement);
+            preparedStatement.setString(1, name);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    // used for tests
+    public void deleteRowFromEmployee(String name){
+        sqlStatement = "DELETE FROM employee WHERE name = ?";
+        try {
+            PreparedStatement preparedStatement;
+            conn = setMySqlConnection();
+            preparedStatement = conn.prepareStatement(sqlStatement);
+            preparedStatement.setString(1, name);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+
+
     public ResultSet selectShopsInMall(String shoppingMallName) {
         sqlStatement = "SELECT shop.name FROM shop INNER JOIN shops_in_mall " +
                 "ON shop.idshop = shops_in_mall.shop INNER JOIN mall " +
@@ -112,6 +146,16 @@ public class DataSource {
 
     public Long  getChainsCount() throws SQLException {
         sqlStatement = "SELECT COUNT(chain.idchain) AS 'count of chains' FROM chain";
+        resultSet = getResultSet(sqlStatement);
+        Long countVal = null;
+        while (resultSet.next()) {
+            countVal = (Long) resultSet.getObject(1);
+        }
+        return countVal;
+    }
+
+    public Long  getEmployeeCount() throws SQLException {
+        sqlStatement = "SELECT COUNT(name) AS 'count of emps' FROM employee";
         resultSet = getResultSet(sqlStatement);
         Long countVal = null;
         while (resultSet.next()) {

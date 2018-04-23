@@ -47,12 +47,13 @@ class DataSourceTest {
 
     @Test
     @Description("Add employee to chain")
-    public void TestAddEmployeeToChain() {
-        ds.addEmployeeToChain("Idan","Ha Lahit",1,"Hanegev","4433",1,1,"1980-03-17");
-        boolean thrown = false;
-        try { ds.selectEmployeesByChain("Idan"); }
-        catch (Exception e) {  thrown = true;}
-        assertTrue(thrown);
+    public void TestAddEmployeeToChain() throws SQLException {
+        Long beforeEmployeeCount = ds.getEmployeeCount();
+        String empName = "Idan";
+        ds.addEmployeeToChain(empName,"Ha Lahit",1,"Hanegev","4433",1,1,"1980-03-17");
+        Long afterEmployeeCount = ds.getEmployeeCount();
+        ds.deleteRowFromEmployee(empName);
+        assertTrue(afterEmployeeCount - beforeEmployeeCount == 1,"The new employee was not add as expected");
         ds.closeConnection();
     }
 
@@ -60,8 +61,10 @@ class DataSourceTest {
     @Description("Add chain")
     void addChain() throws SQLException {
         Long currentChainCount = ds.getChainsCount();
-        ds.addNewChain("ZARA", "Fashion store");
+        String chainName = "ZARA";
+        ds.addNewChain(chainName, "Fashion store");
         Long newChainCount = ds.getChainsCount();
+        ds.deleteRowFromChain(chainName);
         assertTrue(newChainCount - currentChainCount == 1,"The new chain was not add as expected");
     }
 }
