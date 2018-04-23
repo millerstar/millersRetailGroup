@@ -31,7 +31,7 @@ public class DataSource {
     }
 
     // format for birthDay - yyyy-mm-dd
-    public void addEmployeeToChain(String name, String lastName, int city, String street, String postal_code, int shop, int group_managment, String birthDay) {
+    public void addEmployeeToChain(String name, String lastName, int city, String street, String postal_code, int shop, int role, String birthDay) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date javaDate = null;
         try {
@@ -42,7 +42,7 @@ public class DataSource {
         java.sql.Date convertedBirthDay = new java.sql.Date(javaDate.getTime());
 
         String values = "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        sqlStatement = "INSERT INTO employee (name, last_name, city, street, postal_code, shop, `group`, birthDay) " +  values;
+        sqlStatement = "INSERT INTO employee (name, last_name, city, street, postal_code, shop, role, birthDay) " +  values;
         try {
             PreparedStatement preparedStatement;
             conn = setMySqlConnection();
@@ -53,7 +53,7 @@ public class DataSource {
             preparedStatement.setString(4, street);
             preparedStatement.setString(5, postal_code);
             preparedStatement.setInt(6, shop);
-            preparedStatement.setInt(7, group_managment);
+            preparedStatement.setInt(7, role);
             preparedStatement.setDate(8, convertedBirthDay);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {

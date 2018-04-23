@@ -13,34 +13,6 @@ class DataSourceTest {
 
     private DataSource ds = new DataSource();
 
-//Test if we are able to add a chain
-    @Test
-    @Description("Select employee by chain")
-    public void testAddChain() {
-        ds.addNewChain("Idan","Idan-description");
-        boolean thrown = false;
-        try {
-            ds.selectEmployeesByChain("Idan");
-        }
-        catch (Exception e) {
-            thrown = true;
-        }
-        assertTrue(thrown);
-        ds.closeConnection();
-    }
-
-    @Test
-    @Description("Add chain - negative")
-    public void badTestAddChain() {
-        ds.addNewChain("Idan","Idan-description");
-        Random rand = new Random();
-        boolean thrown = false;
-        try { ds.selectEmployeesByChain("Idan"+ rand.nextInt()); }
-        catch (Exception e) {  thrown = true;}
-        assertFalse(thrown);
-        ds.closeConnection();
-    }
-
     @Test
     @Description("Add employee to chain")
     public void TestAddEmployeeToChain() throws SQLException {
